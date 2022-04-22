@@ -1,0 +1,20 @@
+{
+	"name": "Client-Container",
+
+	"dockerComposeFile": [
+		"../docker-compose.yml",
+		"../docker-compose.devcontainer.yml"
+	],
+
+	"service": "client",
+
+	"workspaceFolder": "/home/client",
+
+	"settings": {
+		"terminal.integrated.shell.linux": null
+	},
+
+	"extensions": []
+
+
+}

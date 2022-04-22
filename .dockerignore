@@ -1,0 +1,4 @@
+data/redis
+client/*/node_modules
+client/.devcontainer.json
+__pycache__
