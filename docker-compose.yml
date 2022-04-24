@@ -10,7 +10,7 @@ services:
         volumes:
             - ./redis:/data
         environment:
-            - REDIS_MAXMEMORY=1gb
+            - REDIS_MAXMEMORY=1mb
             - REDIS_MAXMEMORY_POLICY=allkeys-lru
     database:
         image: docker.io/bitnami/postgresql:11
