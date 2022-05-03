@@ -6,12 +6,7 @@ services:
         container_name: cache
         expose:
             - 6379
-        command: ["redis-server", "--bind", "redis", "--port", "6379"]
-        volumes:
-            - ./redis:/data
-        environment:
-            - REDIS_MAXMEMORY=1mb
-            - REDIS_MAXMEMORY_POLICY=allkeys-lru
+        command: ["redis-server", "--bind", "redis", "--port", "6379", "--maxmemory ${maxmemory}","--maxmemory-policy ${maxmemorypolicy}"]
     database:
         image: docker.io/bitnami/postgresql:11
         container_name: pg-db
@@ -45,5 +40,5 @@ services:
         ports:
             - "3000:3000"
         depends_on:
-            - database
+            - redis
             - server

@@ -21,8 +21,6 @@ RUN npm install -g nodemon
 
 RUN npm install --prefix react-app
 
-RUN npm install express --save
-
 RUN apt update
 
 
@@ -34,7 +32,4 @@ RUN apt update
 
 EXPOSE 3000
 
-RUN npm i
-
-#CMD [ "nodemon","server.js"]
-CMD ["tail", "-f", "/dev/null"]
+CMD [ "node","server.js"]
