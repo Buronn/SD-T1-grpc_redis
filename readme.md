@@ -35,8 +35,11 @@ Para iniciar el proyecto, primero hay que copiar el repositorio y luego escribir
 ```sh
 docker-compose --build -d
 ```
-
-
+Para que los contenedores se inician en el ambiente local se utiliza el siguiente comando en la consola:
+* docker
+```sh
+docker-compose up -d
+```
 ### Pre-Requisitos
 
 Tener Docker y Docker Compose instalado
@@ -44,7 +47,6 @@ Tener Docker y Docker Compose instalado
 
 
 
-<!-- USAGE EXAMPLES -->
 ## 🤝 Uso
 
 La aplicación tiene una API, que a través del método GET se pueden hacer las siguientes consultas:
@@ -98,4 +100,34 @@ curl −−location −−request GET http://localhost:3000/keys
     "6"
 ]
 ```
+## Comparación algoritmos de remoción
+Para llevar a cabo una comparación entre los algoritmos se preparó un bash script que se puede correr desde cualquier contenedor o ambiente de linux. El archivo corresponde a request.sh, y realiza una serie de peticiones http a través del comando curl, donde el output corresponde a la palabra que se busca en la API Rest y el tiempo en milisegundos que se demora en realizar la petición.
+```sh
+bash requests.sh
+```
+Cabe destacar que para comparar los distintos algoritmos es necesario cambiar la política de remoción del contenedor de redis. Para ello basta cambiar la variable de entorno maxmemorypolicy entre "allkeys-lru" y "allkeys-lfu" que se encuentra en el archivo .env, e ir aplicando los cambios usando "docker-compose up -d" cada vez que se ejecutará el bash script.
+### Características
+| LFU | LRU |
+| ------------- | ------------- |
+| Remueve el ítem menos utilizado | Remuevo el ítem que menos se ha usado reciéntemente |
+| Requiere un contador de uso/acceso de cada elemento en el caché | Requiere la fecha de ingreso de cada elemento en el caché |
+| Prioriza la ítems más accedidos a largo plazo | Prioriza los ítems más recientes en el caché |
 
+### Mediciones
+#### Sin cache
+| Palabra | LFU | LRU |
+| ------------- | ------------- | ------------- |
+| Disk | 7.922000 ms | 7.295000 ms |
+| SSD | 6.721000 ms | 6.751000 ms |
+| SATA | 6.792000 ms | 7.398000 ms |
+| Mens | 7.133000 ms | 7.346000 ms |
+| a | 7.206000 ms | 7.283000 ms |
+
+#### Con cache
+| Palabra | LFU | LRU |
+| ------------- | ------------- | ------------- |
+| Disk | 2.413000 ms | 2.251000 ms |
+| SSD | 2.234000 ms | 2.940000 ms |
+| SATA | 3.149000 ms | 2.091000 ms |
+| Mens | 2.131000 ms | 2.188000 ms |
+| a | 3.182000 ms | 2.749000 ms |
