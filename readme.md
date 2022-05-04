@@ -109,9 +109,9 @@ Cabe destacar que para comparar los distintos algoritmos es necesario cambiar la
 ### Características
 | LFU | LRU |
 | ------------- | ------------- |
-| Remueve el ítem menos utilizado | Remuevo el ítem que menos se ha usado reciéntemente |
-| Debe mantener una cola para registrar todos los registros de acceso a datos, y cada información debe mantener un recuento de referencia. | Por cada hit dado en cache se deben buscar el dato pedido y actualizar el encabezado |
-| Prioriza la ítems más accedidos a largo plazo | Prioriza los ítems más recientes en el caché |
+| Remueve el ítem menos utilizado. | Remuevo el ítem que menos se ha usado reciéntemente. |
+| Debe mantener una cola para registrar todos los registros de acceso a datos, y cada información debe mantener un recuento de referencia. | Por cada hit dado en cache se deben buscar el dato pedido y actualizar el encabezado. |
+| Prioriza la ítems más accedidos a largo plazo. | Prioriza los ítems más recientes en el caché. |
 
 ### Mediciones
 #### Sin cache
