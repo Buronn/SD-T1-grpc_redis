@@ -36,9 +36,12 @@ services:
         environment:
             - REDIS_URL=redis://cache
         volumes:
-            - ./client:/home/client
+            - ./client:/usr/src/client
+            - node_modules_fcfb_t01:/usr/src/client/node_modules
         ports:
             - "3000:3000"
         depends_on:
             - redis
             - server
+volumes:
+    node_modules_fcfb_t01:

@@ -1,4 +1,4 @@
-server/*/__pycache__
+server/*/__pycache__/
 server/.vscode
 server/bin
 server/include
@@ -8,3 +8,5 @@ server/lib
 server/pyvenv.cfg
 
 client/node_modules
+__pycache__
+server/src/__pycache__/
