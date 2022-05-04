@@ -105,7 +105,7 @@ Para llevar a cabo una comparación entre los algoritmos se preparó un bash scr
 ```sh
 bash requests.sh
 ```
-Cabe destacar que para comparar los distintos algoritmos es necesario cambiar la política de remoción del contenedor de redis. Para ello basta cambiar la variable de entorno maxmemorypolicy entre "allkeys-lru" y "allkeys-lfu" que se encuentra en el archivo .env, e ir aplicando los cambios usando "docker-compose up -d" cada vez que se ejecutará el bash script.
+Cabe destacar que para comparar los distintos algoritmos es necesario cambiar la política de remoción del contenedor de redis. Para ello basta cambiar la variable de entorno maxmemorypolicy entre `allkeys-lru` y `allkeys-lfu` que se encuentra en el archivo .env, e ir aplicando los cambios usando `docker-compose up -d` cada vez que se ejecutará el bash script.
 ### Características
 | LFU | LRU |
 | ------------- | ------------- |
